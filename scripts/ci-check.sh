@@ -115,6 +115,11 @@ while IFS= read -r f; do
   files+=("$f")
 done < <(find phase-* -type f \( -name '*.c' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) | sort)
 
+if [ "${#files[@]}" -eq 0 ]; then
+  echo "No solution files found under phase-*/."
+  exit 0
+fi
+
 for f in "${files[@]}"; do
   checked=$((checked + 1))
   style_check "$f"
