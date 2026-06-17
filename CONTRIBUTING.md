@@ -57,6 +57,20 @@ Open a PR titled `[improve] <area> — <one-line summary>`.
 - **No magic numbers**: use `#define` or `const`.
 - **One concept per file** under `impl/` (e.g. `linked_list.c` not `data_structures.c`).
 
+## File placement
+
+Always commit from the **repository root**, so solution files land at paths like
+`phase-1-foundations/week-01-complexity-arrays/problems/two-sum.c` — *not*
+`practical-dsa/phase-1-foundations/...`. A common mistake is to clone or nest the
+repo inside another `practical-dsa/` folder and commit from there, which produces a
+duplicated `practical-dsa/` path prefix. CI only checks files under `phase-*/` at the
+repo root, so misplaced files are silently skipped (the check appears to pass without
+actually testing your solution). Quick sanity check before opening a PR:
+
+```bash
+git ls-files | grep -c '^practical-dsa/phase-'   # must print 0
+```
+
 ## Commit style
 
 Short, imperative present tense. Examples:
